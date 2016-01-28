@@ -5,7 +5,7 @@ CREATE TABLE wa_page_load_time_uri(
 	request_date STRING,
 	uri STRING,
 	pv INT,
-	request_time_total INT
+	request_time_total DECIMAL(12, 3)
 )  
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
 WITH SERDEPROPERTIES ("hbase.columns.mapping" = ":key, data:site, data:request_date, data:uri, data:pv, data:request_time_total")
