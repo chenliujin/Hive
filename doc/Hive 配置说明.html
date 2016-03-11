@@ -1,4 +1,5 @@
 <h2>hive.optimize.sort.dynamic.partition</h2>
+<p><strong>Default:</strong>true</p>
 <p>默认为 true，将其关闭。</p>
 <p>否则，Attempting to do an INSERT TABLE and GROUP BY while dynamic partitioning is enabled (hive.exec.dynamic.partition = true) may generate an error</p>
 <p>参考：https://documentation.altiscale.com/hive-runtime-error-unable-to-deserialize-input-key</p>
@@ -6,3 +7,38 @@
         &lt;name&gt;hive.optimize.sort.dynamic.partition&lt;/name&gt;
         &lt;value&gt;false&lt;/value&gt;
     &lt;/property&gt;</pre>
+
+<h2>hive.exec.max.dynamic.partitions</h2>
+<p><strong>Default:</strong>1000</p>
+<p>调整为：100000</p>
+
+<h2>hive.exec.max.dynamic.partitions.pernode</h2>
+<p><strong>Default:</strong>100</p>
+<p>调整为：100000</p>
+<pre>
+Diagnostic Messages for this Task:
+java.lang.RuntimeException: org.apache.hadoop.hive.ql.metadata.HiveException: Hive Runtime Error while processing row (tag=0) {"key":{"_col0":"2014-04-12","_col1":"Albania"},"value":{"_col0":1194.1499999999999}}
+    at org.apache.hadoop.hive.ql.exec.mr.ExecReducer.reduce(ExecReducer.java:283)
+    at org.apache.hadoop.mapred.ReduceTask.runOldReducer(ReduceTask.java:520)
+    at org.apache.hadoop.mapred.ReduceTask.run(ReduceTask.java:421)
+    at org.apache.hadoop.mapred.Child$4.run(Child.java:255)
+    at java.security.AccessController.doPrivileged(Native Method)
+    at javax.security.auth.Subject.doAs(Subject.java:415)
+    at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1149)
+    at org.apache.hadoop.mapred.Child.main(Child.java:249)
+Caused by: org.apache.hadoop.hive.ql.metadata.HiveException: Hive Runtime Error while processing row (tag=0) {"key":{"_col0":"2014-04-12","_col1":"Albania"},"value":{"_col0":1194.1499999999999}}
+    at org.apache.hadoop.hive.ql.exec.mr.ExecReducer.reduce(ExecReducer.java:271)
+    ... 7 more
+Caused by: org.apache.hadoop.hive.ql.metadata.HiveFatalException: [Error 20004]: Fatal error occurred when node tried to create too many dynamic partitions. The maximum number of dynamic partitions is controlled by hive.exec.max.dynamic.partitions and hive.exec.max.dynamic.partitions.pernode. Maximum was set to: 100
+    at org.apache.hadoop.hive.ql.exec.FileSinkOperator.getDynOutPaths(FileSinkOperator.java:747)
+    at org.apache.hadoop.hive.ql.exec.FileSinkOperator.processOp(FileSinkOperator.java:572)
+    at org.apache.hadoop.hive.ql.exec.Operator.forward(Operator.java:793)
+    at org.apache.hadoop.hive.ql.exec.SelectOperator.processOp(SelectOperator.java:87)
+    at org.apache.hadoop.hive.ql.exec.Operator.forward(Operator.java:793)
+    at org.apache.hadoop.hive.ql.exec.GroupByOperator.forward(GroupByOperator.java:1064)
+    at org.apache.hadoop.hive.ql.exec.GroupByOperator.processAggr(GroupByOperator.java:875)
+    at org.apache.hadoop.hive.ql.exec.GroupByOperator.processKey(GroupByOperator.java:737)
+    at org.apache.hadoop.hive.ql.exec.GroupByOperator.processOp(GroupByOperator.java:803)
+    at org.apache.hadoop.hive.ql.exec.mr.ExecReducer.reduce(ExecReducer.java:262)
+    ... 7 more	
+</pre>

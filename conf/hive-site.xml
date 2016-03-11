@@ -23,6 +23,14 @@
         <name>hive.optimize.sort.dynamic.partition</name>
         <value>false</value>
     </property>	
+    <property>
+        <name>hive.exec.max.dynamic.partitions</name>
+        <value>100000</value>
+    </property>
+    <property>
+        <name>hive.exec.max.dynamic.partitions.pernode</name>
+        <value>100000</value>
+    </property>	
 	<property>
 		<name>hive.zookeeper.quorum</name>
 		<value>vm1</value>
