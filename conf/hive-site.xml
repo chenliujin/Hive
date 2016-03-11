@@ -19,6 +19,10 @@
         <name>hive.exec.dynamic.partition.mode</name>
         <value>nonstrict</value>
     </property>
+    <property>
+        <name>hive.optimize.sort.dynamic.partition</name>
+        <value>false</value>
+    </property>	
 	<property>
 		<name>hive.zookeeper.quorum</name>
 		<value>vm1</value>
