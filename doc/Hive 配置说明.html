@@ -1,0 +1,8 @@
+<h2>hive.optimize.sort.dynamic.partition</h2>
+<p>默认为 true，将其关闭。</p>
+<p>否则，Attempting to do an INSERT TABLE and GROUP BY while dynamic partitioning is enabled (hive.exec.dynamic.partition = true) may generate an error</p>
+<p>参考：https://documentation.altiscale.com/hive-runtime-error-unable-to-deserialize-input-key</p>
+<pre>    &lt;property&gt;
+        &lt;name&gt;hive.optimize.sort.dynamic.partition&lt;/name&gt;
+        &lt;value&gt;false&lt;/value&gt;
+    &lt;/property&gt;</pre>
