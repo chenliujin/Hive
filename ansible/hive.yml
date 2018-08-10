@@ -1,0 +1,21 @@
+- hosts: hadoop-master
+  remote_user: root
+  tasks:
+    - name: 源码
+      copy: src=/opt/apache-hive-1.2.2-bin.tar.gz dest=/opt/
+
+    - name: 解压
+      shell: tar -xzvf /opt/apache-hive-1.2.2-bin.tar.gz -C /opt/
+
+    - name: 软链接
+      file: src=/opt/apache-hive-1.2.2-bin dest=/opt/hive state=link
+
+    - name: mysql jdbc
+      yum: name=mysql-connector-java state=latest
+
+    - name: mysql jdbc 软链接
+      file: src=/usr/share/java/mysql-connector-java.jar dest=/opt/hive/lib/mysql-connector-java.jar state=link
+
+    - name: 配置
+      copy: src=./opt/hive/conf/hive-site.xml dest=/opt/hive/conf/
+
