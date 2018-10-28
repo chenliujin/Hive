@@ -23,10 +23,17 @@ hive 知识点
 | SMALLINT | 2 Byte |
 | INT | 4 Byte |
 | BIGINT | 8 Byte |
-| BOOLEAN | |
-| FLOAT | |
-| DOUBLE | |
+| FLOAT | 4 Byte |
+| DOUBLE | 8 Byte |
 | STRING | |
+| BOOLEAN | |
+| BINARY | |
+| TIMESTATP | |
+| DECIMAL | |
+| CHAR | |
+| VARCHAR | |
+| DATE | - |
+
 
 # 分区
 
