@@ -1,3 +1,9 @@
+* user_id
+* user_name
+* first_letter
+* live_city
+
+
 # 数据倾斜
 
 # 数据挖掘流程/架构
@@ -34,6 +40,13 @@ hive 知识点
 | VARCHAR | |
 | DATE | - |
 
+---
+
+# 存储类型
+* textfile
+* orcfile: `*****`
+
+---
 
 # 分区
 
