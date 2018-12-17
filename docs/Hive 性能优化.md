@@ -34,6 +34,12 @@ FAILED: SemanticException [Error 10022]: DISTINCT on different columns not suppo
 
 # JOIN
 
+| Type | Approach | Pros | Conditions |
+| --- | --- | --- | --- |
+| Shuffle Join | Join keys are shuffled using map/reduce and joins performed join side. | Works regardless of data size or layout. | Most resource intensive and slowest join type. |
+| map-side Joint (Broadcast Join) | Small tables are loaded into memory in all nodes,mapper scans through the large table and joins. | Very fast, single scan through largest tables. | All but one table must be small enough to fit in RAM. |
+| Sort-Merge-Bucket Joint | Mappers take advantage of co-location of keys to do efficient joins. | Very fast for tables of any size. | Data must be sorted and bucketed ahead of time. |
+
 ## 1. map-side join
 
 ```
@@ -42,3 +48,8 @@ hive> set hive.mapjoin.smalltable.filesize=25000000; #//设置小表的数据文
 ```
 
 ## 2. 大表 join 大表
+* 桶表: 大表化成小表，map side join 解决（`注意`：分桶的判断字段 0 值或空值过多的情况）
+
+```
+hive> set hive.optimize.bucketmapjoin=true;
+```
